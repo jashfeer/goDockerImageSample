@@ -1,7 +1,12 @@
-FROM golang:1.19-alpine3.16
+# Build stage
+FROM golang:1.19-alpine3.16 AS builder
+RUN mkdir /app
+ADD . /app
 WORKDIR /app
-COPY . .
 RUN go build -o main main.go
 
-EXPOSE 9090
-CMD [ "/app/main" ]
+# Run stage 
+FROM alpine:3.16
+COPY --from=builder /app .
+
+CMD [ "./main" ]

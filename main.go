@@ -15,6 +15,6 @@ func index(res http.ResponseWriter, req *http.Request) {
 func main() {
 	http.HandleFunc("/", index)
 	fmt.Println("Started..")
-	http.ListenAndServe(":9090", nil)
+	http.ListenAndServe(":8080", nil)
 
 }
